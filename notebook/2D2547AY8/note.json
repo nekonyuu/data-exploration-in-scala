@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "q    val stats \u003d sqlContext.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/age_gender_bkts.csv\")\n  \n val sessions \u003d sqlContext.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/sessions.csv\")\n  \nval users \u003d sqlContext.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/train_users_2.csv\")\n  \n  \nz.show(users)\n",
+      "text": "val stats \u003d sqlContext.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/age_gender_bkts.csv\")\n  \n val sessions \u003d sqlContext.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/sessions.csv\")\n  \nval users \u003d sqlContext.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/train_users_2.csv\")\n  \n  \nz.show(users)\n",
       "user": "anonymous",
-      "dateUpdated": "Jan 18, 2018 8:51:44 AM",
+      "dateUpdated": "Jan 22, 2018 7:54:59 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -39,15 +39,15 @@
       "jobName": "paragraph_1513627157366_491609418",
       "id": "20171218-195917_948742952",
       "dateCreated": "Dec 18, 2017 7:59:17 PM",
-      "dateStarted": "Jan 17, 2018 9:16:49 PM",
-      "dateFinished": "Jan 17, 2018 9:17:10 PM",
+      "dateStarted": "Jan 22, 2018 7:54:59 AM",
+      "dateFinished": "Jan 22, 2018 7:55:21 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Tri par ordre alphabétique\nusers.sort(\"signup_method\").select(\"id\", \"signup_method\").show(5)\n\nusers.sort(col(\"signup_method\").desc).select(\"id\", \"signup_method\").show(5)",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:49 PM",
+      "dateUpdated": "Jan 22, 2018 7:54:59 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -67,7 +67,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+----------+-------------+\n|        id|signup_method|\n+----------+-------------+\n|x1lztq17k8|        basic|\n|1h6ee8szyw|        basic|\n|wgv2cpzdwi|        basic|\n|pofpbzbgxj|        basic|\n|ccxbh54h6c|        basic|\n+----------+-------------+\nonly showing top 5 rows\n\n+----------+-------------+\n|        id|signup_method|\n+----------+-------------+\n|ipxbse0lhg|       google|\n|makz7uqzuk|       google|\n|15aj5a3yqo|       google|\n|9ayq3t3pvd|       google|\n|85tfni41bk|       google|\n+----------+-------------+\nonly showing top 5 rows\n\n"
+            "data": "+----------+-------------+\n|        id|signup_method|\n+----------+-------------+\n|p8zz46odfz|        basic|\n|g21pqeqmn8|        basic|\n|m6phza50vf|        basic|\n|j6poa3u25n|        basic|\n|55h93s4l5c|        basic|\n+----------+-------------+\nonly showing top 5 rows\n\n+----------+-------------+\n|        id|signup_method|\n+----------+-------------+\n|9ayq3t3pvd|       google|\n|85tfni41bk|       google|\n|makz7uqzuk|       google|\n|15aj5a3yqo|       google|\n|ipxbse0lhg|       google|\n+----------+-------------+\nonly showing top 5 rows\n\n"
           }
         ]
       },
@@ -75,15 +75,15 @@
       "jobName": "paragraph_1515707658451_1056089877",
       "id": "20180111-215418_1256678083",
       "dateCreated": "Jan 11, 2018 9:54:18 PM",
-      "dateStarted": "Jan 17, 2018 9:16:50 PM",
-      "dateFinished": "Jan 17, 2018 9:17:12 PM",
+      "dateStarted": "Jan 22, 2018 7:55:00 AM",
+      "dateFinished": "Jan 22, 2018 7:55:22 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//Transformation de données : ici formatage de date\nimport java.time.format.DateTimeFormatter\nimport java.sql.Timestamp\nimport java.sql.Date\n\nval return_date \u003d udf((date: Timestamp, format: String) \u003d\u003e {\n  val possibleDate \u003d Option(date)\n  possibleDate.map(_.toLocalDateTime().format(DateTimeFormatter.ofPattern(format))).getOrElse(\"\")\n})",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:50 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:00 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -111,15 +111,15 @@
       "jobName": "paragraph_1513629642009_1660448096",
       "id": "20171218-204042_1643566724",
       "dateCreated": "Dec 18, 2017 8:40:42 PM",
-      "dateStarted": "Jan 17, 2018 9:17:11 PM",
-      "dateFinished": "Jan 17, 2018 9:17:13 PM",
+      "dateStarted": "Jan 22, 2018 7:55:21 AM",
+      "dateFinished": "Jan 22, 2018 7:55:23 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//Filtre sur colonne et critère de colonne, suppression valeurs manquantes\nval users_filtered \u003d users\n    .filter(\"gender !\u003d \u0027-unknown-\u0027 AND age is not NULL AND age \u003c\u003d 120\")\n    .select(\n        col(\"id\"), \n        col(\"gender\"), \n        col(\"age\"), \n        col(\"language\"), \n        col(\"country_destination\"), \n        return_date(col(\"date_first_booking\"), lit(\"yyyy-MM\")).as(\"date_first_booking\")\n    )",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:50 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:00 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -147,15 +147,15 @@
       "jobName": "paragraph_1513627323856_-653004880",
       "id": "20171218-200203_651661799",
       "dateCreated": "Dec 18, 2017 8:02:03 PM",
-      "dateStarted": "Jan 17, 2018 9:17:12 PM",
-      "dateFinished": "Jan 17, 2018 9:17:13 PM",
+      "dateStarted": "Jan 22, 2018 7:55:22 AM",
+      "dateFinished": "Jan 22, 2018 7:55:24 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "z.show(users_filtered)",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:00 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -192,15 +192,15 @@
       "jobName": "paragraph_1513627453477_-1512333064",
       "id": "20171218-200413_1927399981",
       "dateCreated": "Dec 18, 2017 8:04:13 PM",
-      "dateStarted": "Jan 17, 2018 9:17:13 PM",
-      "dateFinished": "Jan 17, 2018 9:17:14 PM",
+      "dateStarted": "Jan 22, 2018 7:55:24 AM",
+      "dateFinished": "Jan 22, 2018 7:55:24 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "users_filtered.groupBy(\"age\").agg(sum(\"date_first_booking\").as(\"last_date\")).select(\"age\", \"last_date\").show",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:00 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -228,15 +228,15 @@
       "jobName": "paragraph_1513628387176_1442842207",
       "id": "20171218-201947_441169265",
       "dateCreated": "Dec 18, 2017 8:19:47 PM",
-      "dateStarted": "Jan 17, 2018 9:17:13 PM",
-      "dateFinished": "Jan 17, 2018 9:17:16 PM",
+      "dateStarted": "Jan 22, 2018 7:55:25 AM",
+      "dateFinished": "Jan 22, 2018 7:55:26 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val ageRange \u003d udf((age: Float) \u003d\u003e {\n  (age / 10).toInt * 10\n})",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -264,15 +264,15 @@
       "jobName": "paragraph_1513632437420_-1272152946",
       "id": "20171218-212717_1473431430",
       "dateCreated": "Dec 18, 2017 9:27:17 PM",
-      "dateStarted": "Jan 17, 2018 9:17:14 PM",
-      "dateFinished": "Jan 17, 2018 9:17:16 PM",
+      "dateStarted": "Jan 22, 2018 7:55:25 AM",
+      "dateFinished": "Jan 22, 2018 7:55:27 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val usersWithRange \u003d users_filtered\n    .withColumn(\"ageRange\", ageRange(col(\"age\")))\nz.show(usersWithRange)",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -304,15 +304,15 @@
       "jobName": "paragraph_1513628483267_-1942255237",
       "id": "20171218-202123_1164190089",
       "dateCreated": "Dec 18, 2017 8:21:23 PM",
-      "dateStarted": "Jan 17, 2018 9:17:16 PM",
-      "dateFinished": "Jan 17, 2018 9:17:16 PM",
+      "dateStarted": "Jan 22, 2018 7:55:26 AM",
+      "dateFinished": "Jan 22, 2018 7:55:28 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Distribution: \"répartition\" des utilisateurs selon la valeur d\u0027une colonne (ici country_destination)\nval usersPerDestination \u003d users_filtered.groupBy(\"country_destination\")\n    .agg(count(\"id\").as(\"Count\"))\n    \nz.show(usersPerDestination)",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -344,15 +344,15 @@
       "jobName": "paragraph_1515706088234_1267080059",
       "id": "20180111-212808_984574098",
       "dateCreated": "Jan 11, 2018 9:28:08 PM",
-      "dateStarted": "Jan 17, 2018 9:17:16 PM",
-      "dateFinished": "Jan 17, 2018 9:17:17 PM",
+      "dateStarted": "Jan 22, 2018 7:55:27 AM",
+      "dateFinished": "Jan 22, 2018 7:55:29 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "// Répartition: \"répartition\" des utilisateurs selon leur appartenance à une catégorie d\u0027âge \n// et calcul de l\u0027âge moyen par catégorie d\u0027âge\nval round \u003d udf((value: Float) \u003d\u003e {\n    Math round value\n})\n\nimport org.apache.spark.sql._\nimport collection.JavaConverters._\n\nval ages \u003d usersWithRange.groupBy(\"ageRange\").agg(\n    round(mean(col(\"age\"))).as(\"meanAge\"),\n    count(\"id\").as(\"Count\")\n    )\n    \nimport org.apache.spark.sql.expressions.Window\n\nval medianAges \u003d Window.partitionBy(usersWithRange.col(\"ageRange\")).orderBy(\"age\")\n\nusersWithRange.selectPlus(ntile(5).over(medianAges)).show\n\n//.withColumn(\"medianAge\", usersWithRange.stat.approxQuantile(\"age\", List(0.5d).toArray, 0d))\n\n\n\n//z.show(medianAges)",
+      "text": "// Répartition: \"répartition\" des utilisateurs selon leur appartenance à une catégorie d\u0027âge \n// et calcul de l\u0027âge moyen par catégorie d\u0027âge\nval round \u003d udf((value: Float) \u003d\u003e {\n    Math round value\n})\n\nimport org.apache.spark.sql._\nimport collection.JavaConverters._\n\nval ages \u003d usersWithRange.groupBy(\"ageRange\").agg(\n    round(mean(col(\"age\"))).as(\"meanAge\"),\n    count(\"id\").as(\"Count\")\n    )\n    \nz.show(ages)",
       "user": "anonymous",
-      "dateUpdated": "Jan 18, 2018 8:06:43 AM",
+      "dateUpdated": "Jan 22, 2018 8:03:16 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -399,11 +399,15 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "round: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction1\u003e,IntegerType,Some(List(FloatType)))\nimport org.apache.spark.sql._\nimport collection.JavaConverters._\nages: org.apache.spark.sql.DataFrame \u003d [ageRange: int, meanAge: int ... 1 more field]\nimport org.apache.spark.sql.expressions.Window\nmedianAges: org.apache.spark.sql.expressions.WindowSpec \u003d org.apache.spark.sql.expressions.WindowSpec@3c079f37\n\u003cconsole\u003e:117: error: value selectPlus is not a member of org.apache.spark.sql.DataFrame\n       usersWithRange.selectPlus(ntile(5).over(medianAges)).show\n                      ^\n"
+            "data": "round: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction1\u003e,IntegerType,Some(List(FloatType)))\nimport org.apache.spark.sql._\nimport collection.JavaConverters._\nages: org.apache.spark.sql.DataFrame \u003d [ageRange: int, meanAge: int ... 1 more field]\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "ageRange\tmeanAge\tCount\n40\t44\t17496\n20\t26\t32128\n100\t105\t736\n10\t18\t1081\n50\t54\t9009\n80\t84\t231\n70\t73\t1047\n60\t64\t4364\n90\t95\t176\n110\t110\t210\n30\t34\t41379\n0\t5\t42\n"
           }
         ]
       },
@@ -411,15 +415,54 @@
       "jobName": "paragraph_1513632819862_-764316690",
       "id": "20171218-213339_2025454852",
       "dateCreated": "Dec 18, 2017 9:33:39 PM",
-      "dateStarted": "Jan 18, 2018 8:06:43 AM",
-      "dateFinished": "Jan 18, 2018 8:06:45 AM",
-      "status": "ERROR",
+      "dateStarted": "Jan 22, 2018 8:03:16 AM",
+      "dateFinished": "Jan 22, 2018 8:03:18 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Calcul de l\u0027âge le plus fréquent sur une plage d\u0027âges (mode/valeur dominante)\nval agesMode \u003d usersWithRange.groupBy(\"ageRange\", \"age\").agg(\n        count(\"age\").as(\"sameAgeCount\")\n        )\n        \nval ageMeans \u003d agesMode\n    .groupBy(\"ageRange\").agg(\n        max(\"sameAgeCount\").as(\"maxCount\"),\n        round(mean(col(\"age\"))).as(\"meanAge\")\n    ).select(col(\"maxCount\"), col(\"meanAge\"))\n    \nval ageModeFull \u003d agesMode.join(ageMeans, agesMode(\"sameAgeCount\") \u003d\u003d\u003d ageMeans(\"maxCount\")).select(col(\"ageRange\"), col(\"age\").as(\"ageMode\"), col(\"meanAge\"))\n\nz.show(ageModeFull)",
+      "user": "anonymous",
+      "dateUpdated": "Jan 22, 2018 8:38:12 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "agesMode: org.apache.spark.sql.DataFrame \u003d [ageRange: int, age: double ... 1 more field]\nageMeans: org.apache.spark.sql.DataFrame \u003d [maxCount: bigint, meanAge: int]\nageModeFull: org.apache.spark.sql.DataFrame \u003d [ageRange: int, ageMode: double ... 1 more field]\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "ageRange\tageMode\tmeanAge\n80\t80.0\t85\n20\t29.0\t25\n70\t70.0\t75\n10\t19.0\t17\n60\t60.0\t65\n0\t5.0\t3\n110\t110.0\t112\n100\t105.0\t105\n90\t95.0\t95\n40\t40.0\t45\n30\t30.0\t35\n70\t79.0\t3\n50\t50.0\t55\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1516608190172_1057894608",
+      "id": "20180122-080310_601204901",
+      "dateCreated": "Jan 22, 2018 8:03:10 AM",
+      "dateStarted": "Jan 22, 2018 8:38:12 AM",
+      "dateFinished": "Jan 22, 2018 8:38:15 AM",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Représentation visuelle avec histogramme groupés avec la répartition d\u0027âge par genre ((bar chart: keys \u003d ageRange, Groups: gender, Values: Count SUM)\nval agesPerGender \u003d usersWithRange.groupBy(\"ageRange\", \"gender\").agg(\n    round(mean(col(\"age\"))).as(\"meanAge\"),\n    count(lit(1)).as(\"Count\")\n    )\n    \nz.show(agesPerGender)",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -485,15 +528,15 @@
       "jobName": "paragraph_1515704294489_-656099091",
       "id": "20180111-205814_605655827",
       "dateCreated": "Jan 11, 2018 8:58:14 PM",
-      "dateStarted": "Jan 17, 2018 9:17:18 PM",
-      "dateFinished": "Jan 17, 2018 9:17:20 PM",
+      "dateStarted": "Jan 22, 2018 7:55:29 AM",
+      "dateFinished": "Jan 22, 2018 7:55:34 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Transposition : But une vue plus aisée d\u0027un count suivant un fil chronologique\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.types._\n\nval groupByGenderStereotype \u003d usersWithRange\n    .filter(\"date_first_booking !\u003d \u0027\u0027\")\n    .groupBy(\"date_first_booking\", \"gender\")\n    .agg(count(lit(1)).as(\"Count\"))\n\nz.show(groupByGenderStereotype.filter(\"date_first_booking \u003d\u003d \u00272010-05\u0027\"))",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -525,15 +568,15 @@
       "jobName": "paragraph_1513794457144_1605429626",
       "id": "20171220-182737_1916774237",
       "dateCreated": "Dec 20, 2017 6:27:37 PM",
-      "dateStarted": "Jan 17, 2018 9:17:19 PM",
-      "dateFinished": "Jan 17, 2018 9:17:21 PM",
+      "dateStarted": "Jan 22, 2018 7:55:33 AM",
+      "dateFinished": "Jan 22, 2018 7:55:36 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Résultat final de la transposition\nval genrePerPeriod \u003d groupByGenderStereotype\n    .groupBy(\"date_first_booking\")\n    .pivot(\"gender\", Seq(\"MALE\", \"FEMALE\", \"OTHER\"))\n    .agg(sum(\"count\"))\n\n//z.show(genrePerPeriod.filter(\"date_first_booking \u003d\u003d \u00272010-05\u0027\"))\nz.show(genrePerPeriod)",
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -565,14 +608,14 @@
       "jobName": "paragraph_1513633414029_56359291",
       "id": "20171218-214334_823989104",
       "dateCreated": "Dec 18, 2017 9:43:34 PM",
-      "dateStarted": "Jan 17, 2018 9:17:20 PM",
-      "dateFinished": "Jan 17, 2018 9:17:24 PM",
+      "dateStarted": "Jan 22, 2018 7:55:34 AM",
+      "dateFinished": "Jan 22, 2018 7:55:38 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "user": "anonymous",
-      "dateUpdated": "Jan 17, 2018 9:16:51 PM",
+      "dateUpdated": "Jan 22, 2018 7:55:01 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -598,25 +641,25 @@
   "name": "Airbnb",
   "id": "2D2547AY8",
   "angularObjects": {
-    "2D45DGSGQ:shared_process": [],
-    "2D6DKP4W4:shared_process": [],
-    "2D5Y2FJRV:shared_process": [],
-    "2D6CZHTUP:shared_process": [],
-    "2D4FM9MUD:shared_process": [],
-    "2D575N5TY:shared_process": [],
-    "2D5SUCYN2:shared_process": [],
-    "2D5RT5FJF:shared_process": [],
-    "2D5TFE6X8:shared_process": [],
-    "2D5C3FCAY:shared_process": [],
-    "2D5BSPGAZ:shared_process": [],
-    "2D4N8KU5F:shared_process": [],
-    "2D483H38W:shared_process": [],
-    "2D3RFMM15:shared_process": [],
-    "2D3X2GR6B:shared_process": [],
-    "2D6G3M1NT:shared_process": [],
-    "2D4437E8Q:shared_process": [],
-    "2D6JKV4NP:shared_process": [],
-    "2D3SXUDK7:shared_process": []
+    "2D4G5X3XQ:shared_process": [],
+    "2D3WN9SGE:shared_process": [],
+    "2D6VVUN51:shared_process": [],
+    "2D681HY9E:shared_process": [],
+    "2D6FZH4Y5:shared_process": [],
+    "2D3QRY6H2:shared_process": [],
+    "2D6HNP3SA:shared_process": [],
+    "2D75WFCA8:shared_process": [],
+    "2D4R997PJ:shared_process": [],
+    "2D76W74D8:shared_process": [],
+    "2D66393TP:shared_process": [],
+    "2D5TJD1D5:shared_process": [],
+    "2D4PDSJ2H:shared_process": [],
+    "2D4VPGDP9:shared_process": [],
+    "2D3H7J45S:shared_process": [],
+    "2D72KTY5P:shared_process": [],
+    "2D3Q4CG4T:shared_process": [],
+    "2D71D5B9N:shared_process": [],
+    "2D3JRVRNS:shared_process": []
   },
   "config": {},
   "info": {}
