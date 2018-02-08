@@ -3,7 +3,7 @@
     {
       "text": "val stats \u003d spark.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/age_gender_bkts.csv\")\n  \nval sessions \u003d spark.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/sessions.csv\")\n  \nval users \u003d spark.read.format(\"csv\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .load(\"/notebook/2D2547AY8/airbnb/train_users_2.csv\")",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:06 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -31,15 +31,15 @@
       "jobName": "paragraph_1513627157366_491609418",
       "id": "20171218-195917_948742952",
       "dateCreated": "Dec 18, 2017 7:59:17 PM",
-      "dateStarted": "Feb 7, 2018 8:45:15 PM",
-      "dateFinished": "Feb 7, 2018 8:45:19 PM",
+      "dateStarted": "Feb 8, 2018 4:51:06 PM",
+      "dateFinished": "Feb 8, 2018 4:51:13 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "users.printSchema",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:06 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -66,15 +66,15 @@
       "jobName": "paragraph_1517427502818_-185951753",
       "id": "20180131-193822_1010251680",
       "dateCreated": "Jan 31, 2018 7:38:22 PM",
-      "dateStarted": "Feb 7, 2018 8:45:15 PM",
-      "dateFinished": "Feb 7, 2018 8:45:19 PM",
+      "dateStarted": "Feb 8, 2018 4:51:07 PM",
+      "dateFinished": "Feb 8, 2018 4:51:13 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Aperçu\nusers.show(5)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:06 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -101,15 +101,15 @@
       "jobName": "paragraph_1517427508454_364639248",
       "id": "20180131-193828_1819318122",
       "dateCreated": "Jan 31, 2018 7:38:28 PM",
-      "dateStarted": "Feb 7, 2018 8:45:19 PM",
-      "dateFinished": "Feb 7, 2018 8:45:20 PM",
+      "dateStarted": "Feb 8, 2018 4:51:13 PM",
+      "dateFinished": "Feb 8, 2018 4:51:14 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//Transformation de données : ici lecture d\u0027une date sous forme d\u0027un long et conversion vers une date en string ayant le format défini\n\nimport java.time.format.DateTimeFormatter\n\nval to_date \u003d udf((date: Long, numberFormat: String, destFormat: String) \u003d\u003e {\n  val possibleDate \u003d Option(date)\n  possibleDate.map(number \u003d\u003e {\n    val date \u003d number.toString\n    val formatFrom \u003d DateTimeFormatter.ofPattern(numberFormat)\n    val formatTo \u003d DateTimeFormatter.ofPattern(destFormat)\n    formatTo.format(formatFrom.parse(date))\n  })\n})\n\nval destFormat \u003d \"yyyy-MM-dd\"\nval convertedDates \u003d users.select(date_format(col(\"date_first_booking\"), destFormat).as(\"date_first_booking\"), \n             to_date(col(\"timestamp_first_active\"), lit(\"yyyyMMddHHmmss\"), lit(destFormat)).as(\"timestamp_first_active\"),\n             date_format(col(\"date_account_created\"), destFormat).as(\"date_account_created\"))\n             \nz.show(convertedDates)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -140,15 +140,15 @@
       "jobName": "paragraph_1517427531873_-155895366",
       "id": "20180131-193851_848236890",
       "dateCreated": "Jan 31, 2018 7:38:51 PM",
-      "dateStarted": "Feb 7, 2018 8:45:20 PM",
-      "dateFinished": "Feb 7, 2018 8:45:21 PM",
+      "dateStarted": "Feb 8, 2018 4:51:14 PM",
+      "dateFinished": "Feb 8, 2018 4:51:16 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Aperçu des données qui contiennent des valeurs nulles\nval filtered \u003d users.filter(\"age is NULL or date_first_booking is NULL or date_account_created is NULL or timestamp_first_active is NULL or language is NULL \")\nz.show(filtered)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -183,15 +183,15 @@
       "jobName": "paragraph_1517430802367_-1238550364",
       "id": "20180131-203322_1972972702",
       "dateCreated": "Jan 31, 2018 8:33:22 PM",
-      "dateStarted": "Feb 7, 2018 8:45:20 PM",
-      "dateFinished": "Feb 7, 2018 8:45:21 PM",
+      "dateStarted": "Feb 8, 2018 4:51:14 PM",
+      "dateFinished": "Feb 8, 2018 4:51:16 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//valeurs distinctes\nusers.select(\"language\").distinct.show\n",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 6.0,
         "enabled": true,
@@ -218,15 +218,15 @@
       "jobName": "paragraph_1516819016997_1865299426",
       "id": "20180124-183656_1068179416",
       "dateCreated": "Jan 24, 2018 6:36:56 PM",
-      "dateStarted": "Feb 7, 2018 8:45:21 PM",
-      "dateFinished": "Feb 7, 2018 8:45:22 PM",
+      "dateStarted": "Feb 8, 2018 4:51:16 PM",
+      "dateFinished": "Feb 8, 2018 4:51:18 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "users.select(\"gender\").distinct.show",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 6.0,
         "enabled": true,
@@ -253,15 +253,15 @@
       "jobName": "paragraph_1517431607873_347145993",
       "id": "20180131-204647_2017365782",
       "dateCreated": "Jan 31, 2018 8:46:47 PM",
-      "dateStarted": "Feb 7, 2018 8:45:22 PM",
-      "dateFinished": "Feb 7, 2018 8:45:22 PM",
+      "dateStarted": "Feb 8, 2018 4:51:16 PM",
+      "dateFinished": "Feb 8, 2018 4:51:18 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//Recherche de corrélation\n\n//Petit équivalent ridicule de pd.describe\nusers.describe().show",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -288,15 +288,15 @@
       "jobName": "paragraph_1517431691919_1826645076",
       "id": "20180131-204811_1541047200",
       "dateCreated": "Jan 31, 2018 8:48:11 PM",
-      "dateStarted": "Feb 7, 2018 8:45:22 PM",
-      "dateFinished": "Feb 7, 2018 8:45:27 PM",
+      "dateStarted": "Feb 8, 2018 4:51:18 PM",
+      "dateFinished": "Feb 8, 2018 4:51:23 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//Filtre sur colonne et critère de colonne, suppression valeurs manquantes\nval usersFiltered \u003d users\n    .filter(\"gender !\u003d \u0027-unknown-\u0027 AND age is not NULL AND age \u003c\u003d 100 AND age \u003e\u003d 18 AND country_destination !\u003d \u0027NDF\u0027\")\n    .select(\n        col(\"gender\"),\n        col(\"age\"),\n        col(\"language\"),\n        col(\"signup_method\"),\n        col(\"country_destination\"),\n        col(\"affiliate_provider\"),\n        date_format(col(\"date_first_booking\"), destFormat).as(\"date_first_booking\"), \n        to_date(col(\"timestamp_first_active\"), lit(\"yyyyMMddHHmmss\"), lit(destFormat)).as(\"timestamp_first_active\"),\n        date_format(col(\"date_account_created\"), destFormat).as(\"date_account_created\")\n    )\n\nz.show(usersFiltered)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -363,15 +363,15 @@
       "jobName": "paragraph_1513627323856_-653004880",
       "id": "20171218-200203_651661799",
       "dateCreated": "Dec 18, 2017 8:02:03 PM",
-      "dateStarted": "Feb 7, 2018 8:45:23 PM",
-      "dateFinished": "Feb 7, 2018 8:45:27 PM",
+      "dateStarted": "Feb 8, 2018 4:51:18 PM",
+      "dateFinished": "Feb 8, 2018 4:51:24 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Tri par ordre alphabétique\nusersFiltered.sort(\"signup_method\").show(5)\n\nusersFiltered.sort(col(\"signup_method\").desc).show(5)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -391,7 +391,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|gender| age|language|signup_method|country_destination|affiliate_provider|date_first_booking|timestamp_first_active|date_account_created|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|  MALE|29.0|      en|        basic|                 FR|            direct|        2013-04-24|            2013-04-19|          2013-04-19|\n|FEMALE|22.0|      en|        basic|                 US|            direct|        2013-04-20|            2013-04-19|          2013-04-19|\n|FEMALE|19.0|      en|        basic|              other|            google|        2013-04-21|            2013-04-19|          2013-04-19|\n|FEMALE|24.0|      en|        basic|                 US|            direct|        2013-04-23|            2013-04-19|          2013-04-19|\n|FEMALE|31.0|      en|        basic|                 US|            direct|        2013-12-03|            2013-04-19|          2013-04-19|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\nonly showing top 5 rows\n\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|gender| age|language|signup_method|country_destination|affiliate_provider|date_first_booking|timestamp_first_active|date_account_created|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|  MALE|39.0|      en|       google|                 US|            direct|        2014-05-05|            2014-05-03|          2014-05-03|\n|  MALE|45.0|      en|       google|                 US|            direct|        2014-05-01|            2014-05-01|          2014-05-01|\n|FEMALE|32.0|      en|       google|              other|            direct|        2014-05-02|            2014-05-02|          2014-05-02|\n|  MALE|34.0|      en|       google|                 DE|            direct|        2014-05-03|            2014-04-27|          2014-04-27|\n|  MALE|47.0|      en|       google|                 US|            direct|        2014-07-22|            2014-05-04|          2014-05-04|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\nonly showing top 5 rows\n\n"
+            "data": "+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|gender| age|language|signup_method|country_destination|affiliate_provider|date_first_booking|timestamp_first_active|date_account_created|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|FEMALE|36.0|      en|        basic|                 CA|            direct|        2014-01-28|            2014-01-20|          2014-01-20|\n|FEMALE|20.0|      en|        basic|                 FR|            direct|        2014-01-20|            2014-01-20|          2014-01-20|\n|  MALE|43.0|      en|        basic|                 US|            direct|        2014-01-20|            2014-01-20|          2014-01-20|\n|FEMALE|50.0|      en|        basic|                 US|            google|        2014-05-23|            2014-01-20|          2014-01-20|\n|FEMALE|29.0|      en|        basic|                 US|            google|        2014-01-21|            2014-01-20|          2014-01-20|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\nonly showing top 5 rows\n\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|gender| age|language|signup_method|country_destination|affiliate_provider|date_first_booking|timestamp_first_active|date_account_created|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\n|  MALE|34.0|      en|       google|                 DE|            direct|        2014-05-03|            2014-04-27|          2014-04-27|\n|  MALE|47.0|      en|       google|                 US|            direct|        2014-07-22|            2014-05-04|          2014-05-04|\n|  MALE|45.0|      en|       google|                 US|            direct|        2014-05-01|            2014-05-01|          2014-05-01|\n|FEMALE|32.0|      en|       google|              other|            direct|        2014-05-02|            2014-05-02|          2014-05-02|\n|  MALE|39.0|      en|       google|                 US|            direct|        2014-05-05|            2014-05-03|          2014-05-03|\n+------+----+--------+-------------+-------------------+------------------+------------------+----------------------+--------------------+\nonly showing top 5 rows\n\n"
           }
         ]
       },
@@ -399,15 +399,15 @@
       "jobName": "paragraph_1515707658451_1056089877",
       "id": "20180111-215418_1256678083",
       "dateCreated": "Jan 11, 2018 9:54:18 PM",
-      "dateStarted": "Feb 7, 2018 8:45:27 PM",
-      "dateFinished": "Feb 7, 2018 8:45:29 PM",
+      "dateStarted": "Feb 8, 2018 4:51:23 PM",
+      "dateFinished": "Feb 8, 2018 4:51:25 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//Calcul du groupe d\u0027âge de chaque utilisateur qui nous servira pour la distribution et la répartition\nval ageRange \u003d udf((age: Float) \u003d\u003e {\n    (age / 10).toInt * 10\n})\n\nval usersWithRange \u003d usersFiltered\n    .withColumn(\"ageRange\", ageRange(col(\"age\")))\n    \nz.show(usersWithRange)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -439,15 +439,15 @@
       "jobName": "paragraph_1513628483267_-1942255237",
       "id": "20171218-202123_1164190089",
       "dateCreated": "Dec 18, 2017 8:21:23 PM",
-      "dateStarted": "Feb 7, 2018 8:45:28 PM",
-      "dateFinished": "Feb 7, 2018 8:45:30 PM",
+      "dateStarted": "Feb 8, 2018 4:51:24 PM",
+      "dateFinished": "Feb 8, 2018 4:51:26 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Calcul de l\u0027âge le plus fréquent sur une plage d\u0027âges (mode/valeur dominante) et la moyenne par catégorie d\u0027âge\nimport org.apache.spark.sql.expressions._\n\nval ageW \u003d Window.partitionBy(\"age\")\nval ageRangeW \u003d Window.partitionBy(\"ageRange\")\n\nval agesMode \u003d usersWithRange\n    .select(\n        count(\"age\").over(ageW).as(\"count\"),\n        max(\"age\").over(ageRangeW).as(\"max\"),\n        round(mean(\"age\").over(ageRangeW)).as(\"mean\"),\n        col(\"age\"), \n        col(\"ageRange\")\n    )\n    .distinct\n    .withColumn(\"CountMax\", max(\"count\").over(ageRangeW))\n    .filter(\n      col(\"CountMax\") \u003d\u003d\u003d col(\"count\")    \n    )\n    .orderBy(\"ageRange\")\n    .select(\n      col(\"ageRange\"),\n      col(\"count\"),\n      col(\"age\").as(\"mode\"),\n      col(\"mean\")\n    )\n\n;agesMode.show(10)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -475,7 +475,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.expressions._\nageW: org.apache.spark.sql.expressions.WindowSpec \u003d org.apache.spark.sql.expressions.WindowSpec@5b04a21c\nageRangeW: org.apache.spark.sql.expressions.WindowSpec \u003d org.apache.spark.sql.expressions.WindowSpec@4d1dcdc\nagesMode: org.apache.spark.sql.DataFrame \u003d [ageRange: int, count: bigint ... 2 more fields]\n\u003cconsole\u003e:3: error: illegal start of simple expression\n;agesMode.show(10)\n^\n"
+            "data": "import org.apache.spark.sql.expressions._\nageW: org.apache.spark.sql.expressions.WindowSpec \u003d org.apache.spark.sql.expressions.WindowSpec@76c6d921\nageRangeW: org.apache.spark.sql.expressions.WindowSpec \u003d org.apache.spark.sql.expressions.WindowSpec@3422fc77\nagesMode: org.apache.spark.sql.DataFrame \u003d [ageRange: int, count: bigint ... 2 more fields]\n\u003cconsole\u003e:3: error: illegal start of simple expression\n;agesMode.show(10)\n^\n"
           }
         ]
       },
@@ -483,15 +483,15 @@
       "jobName": "paragraph_1516608190172_1057894608",
       "id": "20180122-080310_601204901",
       "dateCreated": "Jan 22, 2018 8:03:10 AM",
-      "dateStarted": "Feb 7, 2018 8:45:30 PM",
-      "dateFinished": "Feb 7, 2018 8:45:30 PM",
+      "dateStarted": "Feb 8, 2018 4:51:26 PM",
+      "dateFinished": "Feb 8, 2018 4:51:26 PM",
       "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Répartition: \"répartition\" des utilisateurs selon leur appartenance à une catégorie d\u0027âge \n// et calcul de l\u0027âge moyen par catégorie d\u0027âge\n\nval ages \u003d usersWithRange.groupBy(\"ageRange\").agg(\n    round(mean(col(\"age\"))).as(\"meanAge\"),\n    count(\"age\").as(\"Count\")\n    )\n    \nz.show(ages)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:15 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -554,15 +554,15 @@
       "jobName": "paragraph_1513632819862_-764316690",
       "id": "20171218-213339_2025454852",
       "dateCreated": "Dec 18, 2017 9:33:39 PM",
-      "dateStarted": "Feb 7, 2018 8:45:30 PM",
-      "dateFinished": "Feb 7, 2018 8:45:31 PM",
+      "dateStarted": "Feb 8, 2018 4:51:27 PM",
+      "dateFinished": "Feb 8, 2018 4:51:28 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Distribution: \"répartition\" des utilisateurs selon la valeur d\u0027une colonne (ici country_destination)\nval usersPerDestination \u003d usersFiltered.groupBy(\"country_destination\")\n    .agg(count(\"age\").as(\"Count\"))\n    \nz.show(usersPerDestination)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:16 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -594,15 +594,15 @@
       "jobName": "paragraph_1515706088234_1267080059",
       "id": "20180111-212808_984574098",
       "dateCreated": "Jan 11, 2018 9:28:08 PM",
-      "dateStarted": "Feb 7, 2018 8:45:31 PM",
-      "dateFinished": "Feb 7, 2018 8:45:32 PM",
+      "dateStarted": "Feb 8, 2018 4:51:27 PM",
+      "dateFinished": "Feb 8, 2018 4:51:29 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Représentation visuelle avec histogramme groupés avec la répartition d\u0027âge par genre ((bar chart: keys \u003d ageRange, Groups: gender, Values: Count SUM)\nval agesPerGender \u003d usersWithRange.groupBy(\"ageRange\", \"gender\").agg(\n    round(mean(col(\"age\"))).as(\"meanAge\"),\n    count(\"age\").as(\"Count\")\n    )\n    \nz.show(agesPerGender)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:16 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -668,15 +668,15 @@
       "jobName": "paragraph_1515704294489_-656099091",
       "id": "20180111-205814_605655827",
       "dateCreated": "Jan 11, 2018 8:58:14 PM",
-      "dateStarted": "Feb 7, 2018 8:45:32 PM",
-      "dateFinished": "Feb 7, 2018 8:45:33 PM",
+      "dateStarted": "Feb 8, 2018 4:51:28 PM",
+      "dateFinished": "Feb 8, 2018 4:51:30 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Transposition : But une vue plus aisée d\u0027un count suivant un fil chronologique\nval groupByGenderStereotype \u003d usersWithRange\n    .withColumn(\"first_booking_period\", date_format(col(\"date_first_booking\"), \"yyyy-MM\"))\n    .groupBy(\"first_booking_period\", \"gender\")\n    .agg(count(lit(1)).as(\"Count\"))\n    \ngroupByGenderStereotype.show(10)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:16 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -704,15 +704,15 @@
       "jobName": "paragraph_1513794457144_1605429626",
       "id": "20171220-182737_1916774237",
       "dateCreated": "Dec 20, 2017 6:27:37 PM",
-      "dateStarted": "Feb 7, 2018 8:45:32 PM",
-      "dateFinished": "Feb 7, 2018 8:45:33 PM",
+      "dateStarted": "Feb 8, 2018 4:51:29 PM",
+      "dateFinished": "Feb 8, 2018 4:51:31 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "// Résultat final de la transposition\nval genrePerPeriod \u003d groupByGenderStereotype\n    .groupBy(\"first_booking_period\")\n    .pivot(\"gender\", Seq(\"MALE\", \"FEMALE\", \"OTHER\"))\n    .agg(sum(\"count\"))\n\n//z.show(genrePerPeriod.filter(\"date_first_booking \u003d\u003d \u00272010-05\u0027\"))\n//z.show(genrePerPeriod)\ngenrePerPeriod.show(10)",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:16 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -740,15 +740,15 @@
       "jobName": "paragraph_1513633414029_56359291",
       "id": "20171218-214334_823989104",
       "dateCreated": "Dec 18, 2017 9:43:34 PM",
-      "dateStarted": "Feb 7, 2018 8:45:33 PM",
-      "dateFinished": "Feb 7, 2018 8:45:35 PM",
+      "dateStarted": "Feb 8, 2018 4:51:30 PM",
+      "dateFinished": "Feb 8, 2018 4:51:32 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "//recherche de corrélation entre l\u0027affiliate_provider et le language\nval countByLangAndAffiliate \u003d usersFiltered\n    .groupBy(\"language\", \"affiliate_provider\")\n    .agg(count(\"language\").as(\"numberOfUsers\"))\n    .orderBy(col(\"language\").desc)\n    .withColumn(\"logNumberOfUsers\", log10(col(\"numberOfUsers\")))\n\nz.show(countByLangAndAffiliate)\n\n//avec le scatter, on voit juste qu\u0027il n\u0027y a pas de corrélation entre affiliate_provider et language, juste que les gens ont plus tendance à se connecter en direct ou via google, tout language confondu",
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:16 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -826,7 +826,7 @@
           },
           {
             "type": "TABLE",
-            "data": "language\taffiliate_provider\tnumberOfUsers\tlogNumberOfUsers\nzh\tother\t29\t1.462397997898956\nzh\tyahoo\t1\t0.0\nzh\tbing\t2\t0.3010299956639812\nzh\tcraigslist\t3\t0.47712125471966244\nzh\tdirect\t212\t2.326335860928751\nzh\tgoogle\t84\t1.9242792860618816\nzh\tfacebook\t5\t0.6989700043360189\nzh\tgsp\t3\t0.47712125471966244\nzh\tbaidu\t4\t0.6020599913279624\ntr\tgoogle\t3\t0.47712125471966244\ntr\tdirect\t13\t1.1139433523068367\nth\tdirect\t2\t0.3010299956639812\nsv\tdirect\t26\t1.414973347970818\nsv\tother\t2\t0.3010299956639812\nsv\tgoogle\t5\t0.6989700043360189\nru\tgoogle\t20\t1.3010299956639813\nru\tyandex\t2\t0.3010299956639812\nru\tfacebook-open-graph\t1\t0.0\nru\tbing\t1\t0.0\nru\tdirect\t51\t1.7075701760979363\nru\tother\t9\t0.9542425094393249\npt\tgoogle\t15\t1.1760912590556813\npt\tcraigslist\t1\t0.0\npt\tdirect\t35\t1.5440680443502757\npl\tgoogle\t1\t0.0\npl\tother\t1\t0.0\npl\tdirect\t9\t0.9542425094393249\nno\tdirect\t6\t0.7781512503836436\nno\tgoogle\t3\t0.47712125471966244\nno\tother\t1\t0.0\nno\tfacebook\t1\t0.0\nnl\temail-marketing\t1\t0.0\nnl\tvast\t1\t0.0\nnl\tdirect\t9\t0.9542425094393249\nnl\tother\t1\t0.0\nnl\tgoogle\t5\t0.6989700043360189\nnl\tcraigslist\t1\t0.0\nko\tother\t9\t0.9542425094393249\nko\tfacebook\t1\t0.0\nko\tdirect\t88\t1.9444826721501687\nko\tbing\t1\t0.0\nko\tnaver\t4\t0.6020599913279624\nko\tgoogle\t27\t1.4313637641589874\nja\tother\t3\t0.47712125471966244\nja\tgoogle\t16\t1.2041199826559248\nja\tfacebook\t3\t0.47712125471966244\nja\tbing\t1\t0.0\nja\tdirect\t33\t1.5185139398778875\nit\tdirect\t49\t1.6901960800285136\nit\tgoogle\t21\t1.3222192947339193\nit\tvast\t1\t0.0\nit\tother\t2\t0.3010299956639812\nit\tfacebook-open-graph\t1\t0.0\nit\tfacebook\t4\t0.6020599913279624\nis\tgoogle\t2\t0.3010299956639812\nhu\tgoogle\t1\t0.0\nhu\tdirect\t2\t0.3010299956639812\nfr\tdirect\t148\t2.1702617153949575\nfr\tother\t13\t1.1139433523068367\nfr\tvast\t1\t0.0\nfr\tgoogle\t90\t1.954242509439325\nfr\tbing\t2\t0.3010299956639812\nfr\tfacebook\t13\t1.1139433523068367\nfi\tgoogle\t2\t0.3010299956639812\nfi\tdirect\t4\t0.6020599913279624\nes\tother\t12\t1.0791812460476249\nes\tbing\t2\t0.3010299956639812\nes\tdirect\t121\t2.0827853703164503\nes\tgoogle\t51\t1.7075701760979363\nes\tpadmapper\t1\t0.0\nes\tcraigslist\t1\t0.0\nes\tfacebook\t1\t0.0\nen\tcraigslist\t904\t2.9561684304753633\nen\tgsp\t25\t1.3979400086720377\nen\tvast\t150\t2.1760912590556813\nen\tbaidu\t3\t0.47712125471966244\nen\tyahoo\t92\t1.9637878273455553\nen\temail-marketing\t22\t1.3424226808222062\nen\tnaver\t4\t0.6020599913279624\nen\tfacebook\t538\t2.7307822756663893\nen\tmeetup\t33\t1.5185139398778875\nen\tother\t3265\t3.5138831856110926\nen\tgoogle\t12325\t4.090786927949267\nen\tdirect\t36039\t4.556772731793507\nen\tfacebook-open-graph\t111\t2.0453229787866576\nen\tyandex\t2\t0.3010299956639812\nen\tbing\t475\t2.6766936096248664\nen\tpadmapper\t174\t2.2405492482826\nel\tgoogle\t1\t0.0\nel\tdirect\t4\t0.6020599913279624\nde\tcraigslist\t1\t0.0\nde\tgoogle\t47\t1.6720978579357175\nde\tother\t10\t1.0\nde\tdirect\t108\t2.03342375548695\nde\tfacebook\t5\t0.6989700043360189\nda\tdirect\t8\t0.9030899869919435\nda\tother\t1\t0.0\nda\tcraigslist\t2\t0.3010299956639812\nda\tgoogle\t4\t0.6020599913279624\ncs\tgoogle\t1\t0.0\ncs\tdirect\t3\t0.47712125471966244\nca\tdirect\t2\t0.3010299956639812\n"
+            "data": "language\taffiliate_provider\tnumberOfUsers\tlogNumberOfUsers\nzh\tother\t29\t1.462397997898956\nzh\tbing\t2\t0.3010299956639812\nzh\tfacebook\t5\t0.6989700043360189\nzh\tdirect\t212\t2.326335860928751\nzh\tyahoo\t1\t0.0\nzh\tgoogle\t84\t1.9242792860618816\nzh\tcraigslist\t3\t0.47712125471966244\nzh\tbaidu\t4\t0.6020599913279624\nzh\tgsp\t3\t0.47712125471966244\ntr\tdirect\t13\t1.1139433523068367\ntr\tgoogle\t3\t0.47712125471966244\nth\tdirect\t2\t0.3010299956639812\nsv\tother\t2\t0.3010299956639812\nsv\tgoogle\t5\t0.6989700043360189\nsv\tdirect\t26\t1.414973347970818\nru\tfacebook-open-graph\t1\t0.0\nru\tgoogle\t20\t1.3010299956639813\nru\tdirect\t51\t1.7075701760979363\nru\tbing\t1\t0.0\nru\tother\t9\t0.9542425094393249\nru\tyandex\t2\t0.3010299956639812\npt\tgoogle\t15\t1.1760912590556813\npt\tdirect\t35\t1.5440680443502757\npt\tcraigslist\t1\t0.0\npl\tother\t1\t0.0\npl\tdirect\t9\t0.9542425094393249\npl\tgoogle\t1\t0.0\nno\tgoogle\t3\t0.47712125471966244\nno\tfacebook\t1\t0.0\nno\tother\t1\t0.0\nno\tdirect\t6\t0.7781512503836436\nnl\tcraigslist\t1\t0.0\nnl\temail-marketing\t1\t0.0\nnl\tvast\t1\t0.0\nnl\tgoogle\t5\t0.6989700043360189\nnl\tother\t1\t0.0\nnl\tdirect\t9\t0.9542425094393249\nko\tfacebook\t1\t0.0\nko\tdirect\t88\t1.9444826721501687\nko\tother\t9\t0.9542425094393249\nko\tbing\t1\t0.0\nko\tnaver\t4\t0.6020599913279624\nko\tgoogle\t27\t1.4313637641589874\nja\tfacebook\t3\t0.47712125471966244\nja\tgoogle\t16\t1.2041199826559248\nja\tbing\t1\t0.0\nja\tother\t3\t0.47712125471966244\nja\tdirect\t33\t1.5185139398778875\nit\tvast\t1\t0.0\nit\tdirect\t49\t1.6901960800285136\nit\tfacebook-open-graph\t1\t0.0\nit\tother\t2\t0.3010299956639812\nit\tgoogle\t21\t1.3222192947339193\nit\tfacebook\t4\t0.6020599913279624\nis\tgoogle\t2\t0.3010299956639812\nhu\tdirect\t2\t0.3010299956639812\nhu\tgoogle\t1\t0.0\nfr\tgoogle\t90\t1.954242509439325\nfr\tdirect\t148\t2.1702617153949575\nfr\tother\t13\t1.1139433523068367\nfr\tvast\t1\t0.0\nfr\tbing\t2\t0.3010299956639812\nfr\tfacebook\t13\t1.1139433523068367\nfi\tgoogle\t2\t0.3010299956639812\nfi\tdirect\t4\t0.6020599913279624\nes\tpadmapper\t1\t0.0\nes\tfacebook\t1\t0.0\nes\tbing\t2\t0.3010299956639812\nes\tcraigslist\t1\t0.0\nes\tdirect\t121\t2.0827853703164503\nes\tother\t12\t1.0791812460476249\nes\tgoogle\t51\t1.7075701760979363\nen\tcraigslist\t904\t2.9561684304753633\nen\tnaver\t4\t0.6020599913279624\nen\tvast\t150\t2.1760912590556813\nen\tfacebook\t538\t2.7307822756663893\nen\tdirect\t36039\t4.556772731793507\nen\tfacebook-open-graph\t111\t2.0453229787866576\nen\tbaidu\t3\t0.47712125471966244\nen\tbing\t475\t2.6766936096248664\nen\temail-marketing\t22\t1.3424226808222062\nen\tpadmapper\t174\t2.2405492482826\nen\tother\t3265\t3.5138831856110926\nen\tgoogle\t12325\t4.090786927949267\nen\tyahoo\t92\t1.9637878273455553\nen\tgsp\t25\t1.3979400086720377\nen\tyandex\t2\t0.3010299956639812\nen\tmeetup\t33\t1.5185139398778875\nel\tgoogle\t1\t0.0\nel\tdirect\t4\t0.6020599913279624\nde\tcraigslist\t1\t0.0\nde\tgoogle\t47\t1.6720978579357175\nde\tother\t10\t1.0\nde\tfacebook\t5\t0.6989700043360189\nde\tdirect\t108\t2.03342375548695\nda\tother\t1\t0.0\nda\tdirect\t8\t0.9030899869919435\nda\tcraigslist\t2\t0.3010299956639812\nda\tgoogle\t4\t0.6020599913279624\ncs\tdirect\t3\t0.47712125471966244\ncs\tgoogle\t1\t0.0\nca\tdirect\t2\t0.3010299956639812\n"
           }
         ]
       },
@@ -834,14 +834,82 @@
       "jobName": "paragraph_1516818269834_-633128591",
       "id": "20180124-182429_2064451417",
       "dateCreated": "Jan 24, 2018 6:24:29 PM",
-      "dateStarted": "Feb 7, 2018 8:45:34 PM",
-      "dateFinished": "Feb 7, 2018 8:45:35 PM",
+      "dateStarted": "Feb 8, 2018 4:51:31 PM",
+      "dateFinished": "Feb 8, 2018 4:51:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "z.show(countByLangAndAffiliate.filter(\"affiliate_provider NOT IN (\u0027google\u0027, \u0027direct\u0027, \u0027other\u0027)\"))",
+      "user": "anonymous",
+      "dateUpdated": "Feb 8, 2018 5:02:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "scatterChart",
+              "height": 300.0,
+              "optionOpen": true,
+              "setting": {
+                "scatterChart": {
+                  "xAxis": {
+                    "name": "language",
+                    "index": 0.0,
+                    "aggr": "sum"
+                  },
+                  "group": {
+                    "name": "affiliate_provider",
+                    "index": 1.0,
+                    "aggr": "sum"
+                  },
+                  "yAxis": {
+                    "name": "logNumberOfUsers",
+                    "index": 3.0,
+                    "aggr": "sum"
+                  },
+                  "size": {
+                    "name": "logNumberOfUsers",
+                    "index": 3.0,
+                    "aggr": "sum"
+                  }
+                }
+              }
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "language\taffiliate_provider\tnumberOfUsers\tlogNumberOfUsers\nzh\tcraigslist\t3\t0.47712125471966244\nzh\tyahoo\t1\t0.0\nzh\tgsp\t3\t0.47712125471966244\nzh\tfacebook\t5\t0.6989700043360189\nzh\tbing\t2\t0.3010299956639812\nzh\tbaidu\t4\t0.6020599913279624\nru\tyandex\t2\t0.3010299956639812\nru\tbing\t1\t0.0\nru\tfacebook-open-graph\t1\t0.0\npt\tcraigslist\t1\t0.0\nno\tfacebook\t1\t0.0\nnl\temail-marketing\t1\t0.0\nnl\tvast\t1\t0.0\nnl\tcraigslist\t1\t0.0\nko\tfacebook\t1\t0.0\nko\tnaver\t4\t0.6020599913279624\nko\tbing\t1\t0.0\nja\tfacebook\t3\t0.47712125471966244\nja\tbing\t1\t0.0\nit\tfacebook-open-graph\t1\t0.0\nit\tfacebook\t4\t0.6020599913279624\nit\tvast\t1\t0.0\nfr\tbing\t2\t0.3010299956639812\nfr\tvast\t1\t0.0\nfr\tfacebook\t13\t1.1139433523068367\nes\tbing\t2\t0.3010299956639812\nes\tfacebook\t1\t0.0\nes\tpadmapper\t1\t0.0\nes\tcraigslist\t1\t0.0\nen\tfacebook-open-graph\t111\t2.0453229787866576\nen\tyahoo\t92\t1.9637878273455553\nen\tcraigslist\t904\t2.9561684304753633\nen\tfacebook\t538\t2.7307822756663893\nen\tmeetup\t33\t1.5185139398778875\nen\tbing\t475\t2.6766936096248664\nen\tnaver\t4\t0.6020599913279624\nen\temail-marketing\t22\t1.3424226808222062\nen\tbaidu\t3\t0.47712125471966244\nen\tgsp\t25\t1.3979400086720377\nen\tvast\t150\t2.1760912590556813\nen\tyandex\t2\t0.3010299956639812\nen\tpadmapper\t174\t2.2405492482826\nde\tfacebook\t5\t0.6989700043360189\nde\tcraigslist\t1\t0.0\nda\tcraigslist\t2\t0.3010299956639812\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1517427390014_-320029904",
+      "id": "20180131-193630_18959839",
+      "dateCreated": "Jan 31, 2018 7:36:30 PM",
+      "dateStarted": "Feb 8, 2018 4:53:53 PM",
+      "dateFinished": "Feb 8, 2018 4:53:54 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "user": "anonymous",
-      "dateUpdated": "Feb 7, 2018 8:45:16 PM",
+      "dateUpdated": "Feb 8, 2018 4:51:07 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -856,9 +924,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1517427390014_-320029904",
-      "id": "20180131-193630_18959839",
-      "dateCreated": "Jan 31, 2018 7:36:30 PM",
+      "jobName": "paragraph_1518108650473_10462920",
+      "id": "20180208-165050_1803334674",
+      "dateCreated": "Feb 8, 2018 4:50:50 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
@@ -866,25 +934,25 @@
   "name": "Airbnb",
   "id": "2D2547AY8",
   "angularObjects": {
-    "2D6X1YMQF:shared_process": [],
-    "2D7WMK3XD:shared_process": [],
-    "2D5FKATD7:shared_process": [],
-    "2D7H41A9N:shared_process": [],
-    "2D6RGS45B:shared_process": [],
-    "2D7P2DS55:shared_process": [],
-    "2D79WRYS2:shared_process": [],
-    "2D52SS7XR:shared_process": [],
-    "2D7QQRUGN:shared_process": [],
-    "2D627ZMSB:shared_process": [],
-    "2D5FFFK8A:shared_process": [],
-    "2D7CZ8G92:shared_process": [],
-    "2D5NN8VBT:shared_process": [],
-    "2D4WNBXP8:shared_process": [],
-    "2D6551TTW:shared_process": [],
-    "2D7P6T124:shared_process": [],
-    "2D6DJVR4H:shared_process": [],
-    "2D7A2M2H8:shared_process": [],
-    "2D52KXYSH:shared_process": []
+    "2D6P2V24D:shared_process": [],
+    "2D6ARJS61:shared_process": [],
+    "2D5HWNDQT:shared_process": [],
+    "2D5463VKJ:shared_process": [],
+    "2D8V534V4:shared_process": [],
+    "2D53G1FMY:shared_process": [],
+    "2D51GBAM1:shared_process": [],
+    "2D5NY8EK7:shared_process": [],
+    "2D524PVD8:shared_process": [],
+    "2D7EG45KE:shared_process": [],
+    "2D6F46N7X:shared_process": [],
+    "2D5YBKKXD:shared_process": [],
+    "2D6UAGBGK:shared_process": [],
+    "2D5KZTK6U:shared_process": [],
+    "2D86G4XQR:shared_process": [],
+    "2D59KTB9H:shared_process": [],
+    "2D6UHAVWP:shared_process": [],
+    "2D8RMT33Q:shared_process": [],
+    "2D7ASJ513:shared_process": []
   },
   "config": {},
   "info": {}
